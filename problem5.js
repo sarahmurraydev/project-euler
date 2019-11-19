@@ -55,13 +55,6 @@ alwaysDivisibleUnderK(10) // 2520
 
 
 
-
-
-
-
-
-
-
 /* 
     Here's the solution without comments so that we see the code 
     clearly. 
