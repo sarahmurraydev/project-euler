@@ -36,10 +36,14 @@ Which prime, below one-million, can be written as the sum of the most consecutiv
 How to solve this? 
     -> loop through the numbers from 1 ... N and pull out all the primes into an array  // O(n)
     -> take those primes and start at the index of the first prime > N/2 (P1)
-    -> let P2 = the prime under the 
+    -> let P2 = the prime under P1 
+    -> start summing primes starting at P1 ... 2
+        1) check if the sum is less than N
+        2) check if it's prime 
+    -> if either of the above is false, pop off the last element of the array (P1) and move on to the subset of primes
 
 
-    PROOF OF WHY WE CAN START AT pK = the first prime that is greater than N/2 
+PROOF OF WHY WE CAN START AT pK = the first prime that is greater than N/2 
     p1 + p2 + ... pm < N
     N/2 < pk < N 
     let pj = pk + p0 // next highest prime 
@@ -48,3 +52,24 @@ How to solve this?
     so pk + pj > N/2 + N/2 = N 
     so we can start at pk but that would be the highest prime there is 
 */
+
+function isPrime(n) {
+    // prime if for all x < n 
+    for (let i = 2; i < n; i++) {
+        if (n % i === 0) return false
+    }
+
+    // else --> n is prime (unless it's <= 1)
+    return n > 1
+}
+
+function getPrimes(N) {
+    // return an array of primes from 2 ... N 
+    let primes = [];
+    for (let j = 2; j <= N; j++) {
+        if (isPrime(j)) {
+            primes.push(j)
+        }
+    }
+    return primes
+}
