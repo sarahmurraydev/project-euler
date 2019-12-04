@@ -73,3 +73,28 @@ function getPrimes(N) {
     }
     return primes
 }
+
+function getSum(total, num) {
+    return total + num;
+}
+
+function consecutivePrimes(N) {
+    // return the largest sum of consecutive primes under N
+    let primesArr = getPrimes(N/2);
+    let sum = N;
+    while(sum > 2){
+        sum = primesArr.reduce(getSum);
+        if(sum < N && isPrime(sum)){
+            return sum
+        } else {
+            primesArr.pop()
+        }
+    }
+
+    return 2 
+}
+
+// test cases 
+consecutivePrimes(5)    // return 5     (2 + 3)
+consecutivePrimes(20)   // return 17    (2 + 3 + 5 + 7)
+consecutivePrimes(100)  // return 41    (2 + 3 + 5 + 7 + 11 + 13)   
